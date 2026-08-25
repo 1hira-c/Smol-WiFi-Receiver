@@ -2,10 +2,12 @@
 
 [English](README.md) | 日本語
 
-Seeed Studio XIAO nRF54L15とXIAO ESP32-C5で構成する、Smol Slime用の
-2マイコンWi-Fiレシーバーファームウェアです。
+Seeed Studio XIAO nRF54L15とXIAO ESP32-C5で構成する、
+Smol Slime（SlimeVR Tracker nRF）トラッカー群向けの2マイコン
+Wi-Fiレシーバーファームウェアです。
 
-- nRF54L15はSmol Slime独自の2.4 GHz RF v2パケットを受信します。
+- nRF54L15はSmol Slimeトラッカーが2.4 GHz帯で送信する既存のRF v2
+  パケットを受信します。Tracker側のRF形式は変更しません。
 - ESP32-C5は受信レポートを5 GHz Wi-Fi経由でSlimeVR Serverへ転送します。
 - 2つのMCUはREADYハンドシェイク付きの2 MHz SPIリンクで通信します。
 
