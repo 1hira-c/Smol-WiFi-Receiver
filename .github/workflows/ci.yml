@@ -32,7 +32,13 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
-      - run: west init -l . && west update
+      - name: Install native simulator build dependency
+        run: |
+          apt-get update
+          apt-get install -y make
+      - run: |
+          west init -l .
+          west update -o=--depth=1 -n
       - run: west build -p always -b xiao_nrf54l15/nrf54l15/cpuapp firmware/nrf54l15
       - run: west build -p always -d build-test-generator -b xiao_nrf54l15/nrf54l15/cpuapp firmware/nrf54l15 -- -DCONFIG_SMOL_TEST_GENERATOR=y
       - run: west twister -T tests/zephyr -p native_sim
