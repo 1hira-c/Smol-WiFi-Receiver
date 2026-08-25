@@ -1,5 +1,7 @@
 # Smol Wi-Fi Receiver
 
+[日本語](README.ja.md)
+
 Firmware for an unofficial, third-party two-MCU receiver compatible with
 SlimeVR, made from a Seeed Studio XIAO nRF54L15 and a XIAO ESP32-C5.
 
