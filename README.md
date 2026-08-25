@@ -2,11 +2,14 @@
 
 [日本語](README.ja.md)
 
-Firmware for a two-MCU Wi-Fi receiver for the Smol Slime (SlimeVR Tracker nRF)
-tracker family, made from a Seeed Studio XIAO nRF54L15 and a XIAO ESP32-C5.
+The Smol Slime trackers used with this receiver run a custom fork of
+`SlimeVR-Tracker-nRF` with broadcast/diversity support:
+[`1hira-c/SlimeVR-Tracker-nRF`](https://github.com/1hira-c/SlimeVR-Tracker-nRF/tree/codex/xiao-nrf54l15-diversity).
+This repository contains the companion receiver firmware for a Seeed Studio
+XIAO nRF54L15 and a XIAO ESP32-C5.
 
-- The nRF54L15 receives the existing RF v2 packets sent by Smol Slime trackers
-  over 2.4 GHz; the Tracker RF format is not changed.
+- The nRF54L15 receives the fork's 28-byte RF v2 broadcast packets over
+  2.4 GHz; the Tracker-side format is consumed unchanged.
 - The ESP32-C5 transfers receiver reports over 5 GHz Wi-Fi to SlimeVR Server.
 - The two MCUs communicate over a 2 MHz SPI link with a READY handshake.
 
