@@ -2,13 +2,8 @@
 
 [日本語](README.ja.md)
 
-Firmware for an unofficial, third-party two-MCU receiver compatible with
-SlimeVR, made from a Seeed Studio XIAO nRF54L15 and a XIAO ESP32-C5.
-
-This project is independent and is not affiliated with or endorsed by SlimeVR
-B.V. SlimeVR is a trademark or registered trademark of SlimeVR B.V.; the name
-is used here only to describe compatibility. See the
-[SlimeVR trademark policy](https://github.com/SlimeVR/SlimeVR-Server/blob/main/TRADEMARK.md).
+Firmware for a two-MCU Smol Slime receiver made from a Seeed Studio XIAO
+nRF54L15 and a XIAO ESP32-C5.
 
 - The nRF54L15 receives the Smol Slime proprietary 2.4 GHz RF v2 packets.
 - The ESP32-C5 transfers receiver reports over 5 GHz Wi-Fi to SlimeVR Server.

@@ -2,13 +2,8 @@
 
 [English](README.md) | 日本語
 
-Seeed Studio XIAO nRF54L15とXIAO ESP32-C5で構成する、SlimeVR互換の
-非公式な第三者製2マイコンレシーバー用ファームウェアです。
-
-本プロジェクトは独立した非公式プロジェクトであり、SlimeVR B.V.との提携関係はなく、
-同社による承認も受けていません。SlimeVRはSlimeVR B.V.の商標または登録商標です。
-本リポジトリでは互換性を説明する目的に限って名称を使用しています。詳細は
-[SlimeVRの商標ポリシー](https://github.com/SlimeVR/SlimeVR-Server/blob/main/TRADEMARK.md)を参照してください。
+Seeed Studio XIAO nRF54L15とXIAO ESP32-C5で構成する、Smol Slime用の
+2マイコンWi-Fiレシーバーファームウェアです。
 
 - nRF54L15はSmol Slime独自の2.4 GHz RF v2パケットを受信します。
 - ESP32-C5は受信レポートを5 GHz Wi-Fi経由でSlimeVR Serverへ転送します。

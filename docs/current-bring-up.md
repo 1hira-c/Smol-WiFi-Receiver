@@ -105,7 +105,7 @@ Current build SHA-256 values:
 | --- | --- |
 | nRF receiver `build-nrf54l15/merged.hex` | `f6e7208d1f5c6809e4b06c365ff1e5349b134568170a1ce5be2486f7c0fe63aa` |
 | nRF generator `build-nrf54l15-generator/merged.hex` | `d408941d42c1eb4ecf0661881611e59f2f5614e8b410e5d44bdb739cfb2cb209` |
-| ESP application `smol_wifi_gateway.bin` | `06ca0c438990aa2550fe717a1d9d3210b088faa3a4269437e0104bd42c28db0d` |
+| ESP application `smol_wifi_gateway.bin` | `875499027d096255135fb50b9fc1e43f8016fe95cf71e4f85b228a5e19e4c5ca` |
 
 The receiver's pre-flash RRAM and UICR backups remain in the ignored
 `build-device-backups` directory. Their SHA-256 values are respectively

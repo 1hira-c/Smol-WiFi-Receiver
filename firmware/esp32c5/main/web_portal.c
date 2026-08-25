@@ -29,7 +29,7 @@ static const char index_html[] =
 	"<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width'>"
 	"<title>Smol Wi-Fi Receiver</title><style>body{font-family:sans-serif;max-width:42rem;margin:2rem auto;padding:0 1rem}"
 	"input,button{font:inherit;padding:.5rem;margin:.25rem 0;width:100%;box-sizing:border-box}pre{background:#eee;padding:1rem}</style></head>"
-	"<body><h1>Smol Wi-Fi Receiver</h1><p>Unofficial third-party receiver compatible with SlimeVR.</p><pre id=s>Loading...</pre><form id=f>"
+	"<body><h1>Smol Wi-Fi Receiver</h1><pre id=s>Loading...</pre><form id=f>"
 	"<input name=ssid placeholder='5 GHz SSID' required><input name=password type=password placeholder='Wi-Fi password'>"
 	"<input name=country value=JP maxlength=2 required><input name=server placeholder='Server IPv4 or hostname (optional)'>"
 	"<input name=serverPort value=6969 type=number min=1 max=65535><button>Save and reboot</button></form>"
