@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_GOLDEN_VECTORS_H
-#define SLIMEVR_GOLDEN_VECTORS_H
+#ifndef SMOL_GOLDEN_VECTORS_H
+#define SMOL_GOLDEN_VECTORS_H
 
 #define SV_GOLDEN_RF_V2_BYTES { \
 	0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, \

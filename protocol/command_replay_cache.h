@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_COMMAND_REPLAY_CACHE_H
-#define SLIMEVR_COMMAND_REPLAY_CACHE_H
+#ifndef SMOL_COMMAND_REPLAY_CACHE_H
+#define SMOL_COMMAND_REPLAY_CACHE_H
 
 #include <stdbool.h>
 #include <stdint.h>

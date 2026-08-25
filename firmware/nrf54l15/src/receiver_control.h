@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_RECEIVER_CONTROL_H
-#define SLIMEVR_RECEIVER_CONTROL_H
+#ifndef SMOL_RECEIVER_CONTROL_H
+#define SMOL_RECEIVER_CONTROL_H
 
 #include "bridge_protocol.h"
 

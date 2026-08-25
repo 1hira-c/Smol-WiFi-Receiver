@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_ID48_CODEC_H
-#define SLIMEVR_ID48_CODEC_H
+#ifndef SMOL_ID48_CODEC_H
+#define SMOL_ID48_CODEC_H
 
 #include <stdbool.h>
 #include <stdint.h>

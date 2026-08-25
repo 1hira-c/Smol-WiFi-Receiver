@@ -26,6 +26,10 @@ jobs:
   nrf54l15:
     runs-on: ubuntu-latest
     container: ghcr.io/nrfconnect/sdk-nrf-toolchain:v3.3.1
+    defaults:
+      run:
+        # Bash initializes the toolchain environment in Nordic's container.
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - run: west init -l . && west update

@@ -1,8 +1,8 @@
 /*
  * SPDX-License-Identifier: MIT OR Apache-2.0
  */
-#ifndef SLIMEVR_BRIDGE_PROTOCOL_H
-#define SLIMEVR_BRIDGE_PROTOCOL_H
+#ifndef SMOL_BRIDGE_PROTOCOL_H
+#define SMOL_BRIDGE_PROTOCOL_H
 
 #include <stdbool.h>
 #include <stddef.h>

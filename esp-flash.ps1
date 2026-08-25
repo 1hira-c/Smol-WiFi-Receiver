@@ -21,7 +21,7 @@ if (-not $Port) {
 $build = Join-Path $PSScriptRoot "firmware\esp32c5\build"
 $bootloader = Join-Path $build "bootloader\bootloader.bin"
 $partitions = Join-Path $build "partition_table\partition-table.bin"
-$application = Join-Path $build "slimevr_smol_wifi_gateway.bin"
+$application = Join-Path $build "smol_wifi_gateway.bin"
 foreach ($file in @($bootloader, $partitions, $application)) {
     if (-not (Test-Path -LiteralPath $file)) {
         throw "Missing build output: $file"

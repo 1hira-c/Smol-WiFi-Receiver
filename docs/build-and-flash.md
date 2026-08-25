@@ -58,7 +58,7 @@ is emitted every 30 seconds; `decode`, `drops`, `timeouts`, `rf_crc`,
 `report_drops`, `spi_crc`, and `transfer_errors` should remain zero during a
 clean bench test.
 
-On first boot, join `SlimeVR-Setup-XXXX` using `slimevr-setup`, open
+On first boot, join `SmolReceiver-Setup-XXXX` using `smol-wifi-setup`, open
 `http://192.168.4.1/`, and save a 5 GHz SSID. The unit reboots and enforces
 5 GHz-only station mode. The default regulatory country is `JP`; set the
 actual deployment country before normal use.

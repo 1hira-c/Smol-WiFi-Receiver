@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_RECEIVER_STORAGE_H
-#define SLIMEVR_RECEIVER_STORAGE_H
+#ifndef SMOL_RECEIVER_STORAGE_H
+#define SMOL_RECEIVER_STORAGE_H
 
 #include <stdbool.h>
 #include <stdint.h>

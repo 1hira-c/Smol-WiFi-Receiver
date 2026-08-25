@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT OR Apache-2.0
-mainmenu "SlimeVR Smol Wi-Fi receiver"
+mainmenu "Smol Wi-Fi receiver"
 
 config SMOL_TEST_GENERATOR
 	bool "Generate 16 synthetic trackers at 100 Hz each"

@@ -1,7 +1,12 @@
-# SlimeVR Smol Wi-Fi Receiver
+# Smol Wi-Fi Receiver
 
-Firmware for a two-MCU SlimeVR Smol receiver made from a Seeed Studio XIAO
-nRF54L15 and a XIAO ESP32-C5.
+Firmware for an unofficial, third-party two-MCU receiver compatible with
+SlimeVR, made from a Seeed Studio XIAO nRF54L15 and a XIAO ESP32-C5.
+
+This project is independent and is not affiliated with or endorsed by SlimeVR
+B.V. SlimeVR is a trademark or registered trademark of SlimeVR B.V.; the name
+is used here only to describe compatibility. See the
+[SlimeVR trademark policy](https://github.com/SlimeVR/SlimeVR-Server/blob/main/TRADEMARK.md).
 
 - The nRF54L15 receives the Smol Slime proprietary 2.4 GHz RF v2 packets.
 - The ESP32-C5 transfers receiver reports over 5 GHz Wi-Fi to SlimeVR Server.
@@ -23,8 +28,8 @@ nRF52840 USB HID receiver remains in the upstream receiver repository.
 Read [prototype wiring](docs/prototype-wiring.md), then build and flash both
 firmwares using [the build guide](docs/build-and-flash.md). The gateway uses
 5 GHz Wi-Fi exclusively during normal operation. If it is unconfigured or
-cannot connect for 30 seconds, it opens `SlimeVR-Setup-XXXX` on 2.4 GHz with
-the initial WPA2 password `slimevr-setup`.
+cannot connect for 30 seconds, it opens `SmolReceiver-Setup-XXXX` on 2.4 GHz
+with the initial WPA2 password `smol-wifi-setup`.
 
 Additional references: [architecture](docs/architecture.md),
 [wire protocols](protocol/PROTOCOL.md), [Web API](docs/web-api.md), and the

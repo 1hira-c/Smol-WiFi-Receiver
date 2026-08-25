@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_RF_RECEIVER_H
-#define SLIMEVR_RF_RECEIVER_H
+#ifndef SMOL_RF_RECEIVER_H
+#define SMOL_RF_RECEIVER_H
 
 #include <stdbool.h>
 #include <stdint.h>

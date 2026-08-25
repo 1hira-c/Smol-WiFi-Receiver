@@ -23,6 +23,6 @@ int main(void)
 		return result;
 	}
 	test_generator_init();
-	LOG_INF("SlimeVR Smol Wi-Fi nRF54L15 receiver ready");
+	LOG_INF("Smol Wi-Fi nRF54L15 receiver ready");
 	return 0;
 }

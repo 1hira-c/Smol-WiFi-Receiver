@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_SPI_BRIDGE_H
-#define SLIMEVR_SPI_BRIDGE_H
+#ifndef SMOL_SPI_BRIDGE_H
+#define SMOL_SPI_BRIDGE_H
 
 #include <stdint.h>
 

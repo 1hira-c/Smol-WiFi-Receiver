@@ -1,8 +1,8 @@
 /*
  * SPDX-License-Identifier: MIT OR Apache-2.0
  */
-#ifndef SLIMEVR_GATEWAY_PROTOCOL_H
-#define SLIMEVR_GATEWAY_PROTOCOL_H
+#ifndef SMOL_GATEWAY_PROTOCOL_H
+#define SMOL_GATEWAY_PROTOCOL_H
 
 #include <stdbool.h>
 #include <stddef.h>

@@ -18,5 +18,5 @@ void app_main(void)
 	ESP_ERROR_CHECK(gateway_udp_init());
 	ESP_ERROR_CHECK(web_portal_init());
 	ESP_ERROR_CHECK(status_metrics_init());
-	ESP_LOGI(TAG, "SlimeVR Smol Wi-Fi gateway started");
+	ESP_LOGI(TAG, "Smol Wi-Fi gateway started");
 }

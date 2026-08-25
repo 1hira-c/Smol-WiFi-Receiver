@@ -12,7 +12,7 @@
 #include "esp_wifi.h"
 
 #define STA_CONNECT_TIMEOUT_MS 30000
-#define SETUP_PASSWORD "slimevr-setup"
+#define SETUP_PASSWORD "smol-wifi-setup"
 
 static const char *TAG = "wifi";
 static EventGroupHandle_t events;
@@ -53,7 +53,7 @@ static int start_setup_ap(void)
 	if (!ap_netif) return ESP_ERR_NO_MEM;
 	uint8_t mac[6];
 	ESP_ERROR_CHECK(esp_read_mac(mac, ESP_MAC_WIFI_SOFTAP));
-	snprintf(setup_ssid, sizeof(setup_ssid), "SlimeVR-Setup-%02X%02X", mac[4], mac[5]);
+	snprintf(setup_ssid, sizeof(setup_ssid), "SmolReceiver-Setup-%02X%02X", mac[4], mac[5]);
 	wifi_config_t wifi = {0};
 	strlcpy((char *)wifi.ap.ssid, setup_ssid, sizeof(wifi.ap.ssid));
 	strlcpy((char *)wifi.ap.password, SETUP_PASSWORD, sizeof(wifi.ap.password));

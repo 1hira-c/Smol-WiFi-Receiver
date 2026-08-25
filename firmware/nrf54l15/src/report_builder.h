@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT OR Apache-2.0 */
-#ifndef SLIMEVR_REPORT_BUILDER_H
-#define SLIMEVR_REPORT_BUILDER_H
+#ifndef SMOL_REPORT_BUILDER_H
+#define SMOL_REPORT_BUILDER_H
 
 #include <stdbool.h>
 #include <stdint.h>

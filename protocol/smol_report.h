@@ -1,8 +1,8 @@
 /*
  * SPDX-License-Identifier: MIT OR Apache-2.0
  */
-#ifndef SLIMEVR_SMOL_REPORT_H
-#define SLIMEVR_SMOL_REPORT_H
+#ifndef SMOL_REPORT_H
+#define SMOL_REPORT_H
 
 #include <stdint.h>
 
