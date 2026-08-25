@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+idf_component_register(
+    SRCS
+        "app_main.c"
+        "app_config.c"
+        "bridge_spi.c"
+        "gateway_udp.c"
+        "status_metrics.c"
+        "wifi_manager.c"
+        "web_portal.c"
+        "../../../protocol/bridge_protocol.c"
+        "../../../protocol/gateway_protocol.c"
+        "../../../protocol/id48_codec.c"
+    INCLUDE_DIRS "." "../../../protocol"
+    REQUIRES
+        esp_driver_gpio
+        esp_driver_spi
+        esp_common
+        esp_event
+        esp_hw_support
+        esp_http_server
+        esp_netif
+        esp_rom
+        esp_system
+        esp_wifi
+        freertos
+        lwip
+        nvs_flash
+)

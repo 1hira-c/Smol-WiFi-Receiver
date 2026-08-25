@@ -1,0 +1,64 @@
+/* SPDX-License-Identifier: MIT OR Apache-2.0 */
+#include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
+
+/ {
+	chosen {
+		/delete-property/ zephyr,console;
+		/delete-property/ zephyr,shell-uart;
+		/delete-property/ nordic,rpc-uart;
+	};
+
+	zephyr,user {
+		bridge-ready-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&pinctrl {
+	/*
+	 * nRF54L15 peripheral signals cannot span GPIO ports. Keep SCK, MOSI,
+	 * MISO, and CSN on P1; READY is the separate GPIO declared above.
+	 */
+	spi20_bridge_default: spi20_bridge_default {
+		group1 {
+			psels = <NRF_PSEL(SPIS_SCK, 1, 11)>,
+				<NRF_PSEL(SPIS_MOSI, 1, 5)>,
+				<NRF_PSEL(SPIS_MISO, 1, 10)>;
+		};
+
+		group2 {
+			psels = <NRF_PSEL(SPIS_CSN, 1, 7)>;
+			/* Keep the peripheral deselected while the ESP resets. */
+			bias-pull-up;
+		};
+	};
+
+	spi20_bridge_sleep: spi20_bridge_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIS_SCK, 1, 11)>,
+				<NRF_PSEL(SPIS_MOSI, 1, 5)>,
+				<NRF_PSEL(SPIS_MISO, 1, 10)>,
+				<NRF_PSEL(SPIS_CSN, 1, 7)>;
+			low-power-enable;
+		};
+	};
+};
+
+&spi00 { status = "disabled"; };
+
+&spi20 {
+	compatible = "nordic,nrf-spis";
+	/delete-property/ rx-delay-supported;
+	/delete-property/ rx-delay;
+	status = "okay";
+	def-char = <0>;
+	pinctrl-0 = <&spi20_bridge_default>;
+	pinctrl-1 = <&spi20_bridge_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&uart20 { status = "disabled"; };
+&uart21 { status = "disabled"; };
+&i2c22 { status = "disabled"; };
+&i2c30 { status = "disabled"; };
+&pdm20 { status = "disabled"; };
+&adc { status = "disabled"; };

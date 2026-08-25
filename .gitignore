@@ -1,0 +1,9 @@
+build/
+build-*/
+sdkconfig
+sdkconfig.old
+.west/
+.vscode/
+.idea/
+compile_commands.json
+managed_components/
