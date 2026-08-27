@@ -10,17 +10,21 @@ XIAO nRF54L15 and a XIAO ESP32-C5.
 
 - The nRF54L15 receives the fork's 28-byte RF v2 broadcast packets over
   2.4 GHz; the Tracker-side format is consumed unchanged.
-- The ESP32-C5 transfers receiver reports over 5 GHz Wi-Fi to SlimeVR Server.
+- The ESP32-C5 transfers receiver reports over 5 GHz Wi-Fi to the host Bridge.
 - The two MCUs communicate over a 2 MHz SPI link with a READY handshake.
+- The host Bridge merges Wi-Fi and USB HID receivers, removes duplicate RF
+  broadcasts, and forwards standard UDP tracker packets to SlimeVR Server.
 
-This repository intentionally targets the Wi-Fi receiver only. The existing
-nRF52840 USB HID receiver remains in the upstream receiver repository.
+The device firmware in this repository targets the Wi-Fi receiver. The host
+Bridge also accepts the existing nRF52840 USB HID receiver firmware maintained
+in the upstream receiver repository.
 
 ## Layout
 
 - `firmware/nrf54l15`: nRF Connect SDK v3.3.1 receiver application.
 - `firmware/esp32c5`: ESP-IDF v6.0.2 gateway application.
 - `protocol`: shared C wire formats and protocol documentation.
+- `bridge`: Rust host application for combined Wi-Fi/HID diversity reception.
 - `docs`: prototype wiring, provisioning, flashing, and validation notes.
 - `tests/host`: host-buildable protocol tests.
 
@@ -32,6 +36,7 @@ firmwares using [the build guide](docs/build-and-flash.md). The gateway uses
 cannot connect for 30 seconds, it opens `SmolReceiver-Setup-XXXX` on 2.4 GHz
 with the initial WPA2 password `smol-wifi-setup`.
 
+Run the host application as described in the [Bridge README](bridge/README.md).
 Additional references: [architecture](docs/architecture.md),
 [wire protocols](protocol/PROTOCOL.md), [Web API](docs/web-api.md), and the
 [validation checklist](docs/validation.md). The latest bench state and exact

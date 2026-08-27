@@ -1,6 +1,38 @@
 # Current hardware bring-up state
 
-Last updated: 2026-08-25 (JST).
+> This records the completed direct-to-modified-Server validation before the
+> host Bridge was introduced. New validation targets SVW1 port 6970 on the
+> Bridge and stock SlimeVR Server output on localhost port 6969.
+
+Last updated: 2026-08-27 (JST).
+
+## Host Bridge hardware recheck (2026-08-27)
+
+- The current release images were rebuilt and flashed to CMSIS-DAP probe
+  `4B719E61` and ESP32-C5 `COM24`; both programmers verified their writes.
+- The running Web UI now reports `Smol Wi-Fi Receiver` in both its title and
+  heading. Wi-Fi credentials, country `JP`, group `FD3EB08EAE51`, secondary
+  mode, and radio-enable state survived the updates.
+- A previously provisioned unit continued sending dynamic discovery to the old
+  port 6969 after the Bridge change. Configuration schema version 1 now
+  migrates only the old dynamic default (empty fixed host plus port 6969) to
+  6970. Fixed hosts and all other explicitly selected ports remain unchanged.
+- Windows has a Private-profile, LocalSubnet-scoped inbound UDP 6970 Firewall
+  rule named `Smol Receiver Bridge UDP 6970 incoming`. An actual SVW1 DISCOVER
+  from `172.34.1.38` was captured on the newly allowed port.
+- The normal Tracker was no longer transmitting during this recheck, so the
+  built-in deterministic nRF generator was installed temporarily. Through a
+  temporary Windows-to-WSL UDP relay, a 20-second run forwarded 11,519
+  datagrams in each direction. The Bridge created 16 logical trackers and
+  accepted 26,309 records with zero duplicate, stale, missing-sequence, or CRC
+  counts. ESP SPI transfer/decode/drop/timeout counters and nRF CRC/drop
+  counters were also zero after the run.
+- The final nRF release image was restored. Its secondary tracker table is
+  learned in RAM from live RF, so `trackers=0` is expected until the configured
+  Tracker transmits again; the stored group and all other receiver settings are
+  intact. A final ESP restart returned clean counters. The one initial nRF SPI
+  CRC event is the known boot/partial-frame event and is checked for stability
+  rather than treated as a running-link failure.
 
 ## Hardware link verified
 
@@ -105,7 +137,7 @@ Current build SHA-256 values:
 | --- | --- |
 | nRF receiver `build-nrf54l15/merged.hex` | `f6e7208d1f5c6809e4b06c365ff1e5349b134568170a1ce5be2486f7c0fe63aa` |
 | nRF generator `build-nrf54l15-generator/merged.hex` | `d408941d42c1eb4ecf0661881611e59f2f5614e8b410e5d44bdb739cfb2cb209` |
-| ESP application `smol_wifi_gateway.bin` | `875499027d096255135fb50b9fc1e43f8016fe95cf71e4f85b228a5e19e4c5ca` |
+| ESP application `smol_wifi_gateway.bin` | `fb00a1e60fac686b1c74c2c5d114091793b108b5c4b074080b51b2f2cefbea36` |
 
 The receiver's pre-flash RRAM and UICR backups remain in the ignored
 `build-device-backups` directory. Their SHA-256 values are respectively

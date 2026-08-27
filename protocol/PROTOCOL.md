@@ -38,8 +38,9 @@ The 64-byte report preserves the diversity-aware USB format:
 
 ## GatewayDatagramV1
 
-Gateway messages share the SlimeVR tracker UDP port and are detected before
-the owoTrack parser.
+Gateway messages are received by Smol Receiver Bridge on its dedicated UDP
+port (6970 by default). The Bridge forwards accepted logical tracker updates
+to SlimeVR Server using the standard tracker UDP port.
 
 | Offset | Size | Field |
 | ---: | ---: | --- |

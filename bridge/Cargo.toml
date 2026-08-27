@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+[package]
+name = "smol-receiver-bridge"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+description = "Diversity receiver bridge for Smol Slime trackers"
+
+[target.'cfg(not(target_os = "windows"))'.dependencies]
+hidapi = "2.6.6"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+hidapi = { version = "2.6.6", default-features = false, features = ["windows-native"] }

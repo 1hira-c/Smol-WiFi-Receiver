@@ -11,17 +11,20 @@
 
 - nRF54L15は、このフォークが2.4 GHz帯でブロードキャストする28バイトRF v2
   パケットを受信します。Tracker側の形式は変更せず、そのまま入力として扱います。
-- ESP32-C5は受信レポートを5 GHz Wi-Fi経由でSlimeVR Serverへ転送します。
+- ESP32-C5は受信レポートを5 GHz Wi-Fi経由でホストBridgeへ転送します。
 - 2つのMCUはREADYハンドシェイク付きの2 MHz SPIリンクで通信します。
+- ホストBridgeはWi-FiとUSB HIDのレシーバーを統合してRF重複を除去し、標準UDP
+  トラッカーパケットとしてSlimeVR Serverへ転送します。
 
-本リポジトリはWi-Fiレシーバーのみを対象としています。既存のnRF52840 USB HID
-レシーバーは、従来のレシーバーリポジトリで引き続き管理します。
+本リポジトリ内のデバイスFWはWi-Fiレシーバーを対象とします。ホストBridgeは、
+従来のレシーバーリポジトリで管理するnRF52840 USB HIDレシーバーにも対応します。
 
 ## ディレクトリ構成
 
 - `firmware/nrf54l15`: nRF Connect SDK v3.3.1用レシーバーアプリケーション
 - `firmware/esp32c5`: ESP-IDF v6.0.2用ゲートウェイアプリケーション
 - `protocol`: 両MCUで共有するC言語のワイヤ形式とプロトコル仕様
+- `bridge`: Wi-Fi/HIDダイバーシティ受信用Rustホストアプリケーション
 - `docs`: 試作配線、設定、書き込み、検証に関する文書
 - `tests/host`: ホスト環境で実行できるプロトコルテスト
 
@@ -34,6 +37,7 @@
 `SmolReceiver-Setup-XXXX`という設定用APを開きます。初期WPA2パスワードは
 `smol-wifi-setup`です。
 
+ホストアプリは[Bridge README](bridge/README.md)の手順で起動します。
 その他の資料として、[アーキテクチャ](docs/architecture.md)、
 [ワイヤプロトコル](protocol/PROTOCOL.md)、[Web API](docs/web-api.md)、
 [検証チェックリスト](docs/validation.md)があります。現在の実機検証状況と作業再開手順は

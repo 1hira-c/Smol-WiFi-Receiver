@@ -22,7 +22,7 @@ Configuration body:
   "password": "secret",
   "country": "JP",
   "server": "",
-  "serverPort": 6969
+  "serverPort": 6970
 }
 ```
 

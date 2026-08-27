@@ -7,3 +7,4 @@ sdkconfig.old
 .idea/
 compile_commands.json
 managed_components/
+bridge/target/

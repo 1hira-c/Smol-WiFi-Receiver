@@ -63,15 +63,36 @@ On first boot, join `SmolReceiver-Setup-XXXX` using `smol-wifi-setup`, open
 5 GHz-only station mode. The default regulatory country is `JP`; set the
 actual deployment country before normal use.
 
+Set the gateway destination port to `6970`, the Bridge default. Existing NVS
+configuration survives a normal application flash. On the first boot of the
+Bridge-capable firmware, the old dynamic-discovery default (`server` empty and
+port `6969`) is migrated to `6970`. Fixed hosts and other explicitly selected
+ports are preserved and can be updated through the setup portal if needed.
+
+## Host Bridge
+
+Install a current stable Rust toolchain. From the repository root:
+
+```sh
+cargo build --release --manifest-path bridge/Cargo.toml
+cargo run --release --manifest-path bridge/Cargo.toml
+```
+
+The Bridge listens for Wi-Fi receivers on UDP 6970 and HID receivers on
+`1209:7690`, then forwards logical trackers to the stock SlimeVR Server at
+`127.0.0.1:6969`. See the [Bridge README](../bridge/README.md) for USB device
+ownership, the Windows Firewall rule, and command-line options.
+
 ## Tests
 
 ```sh
 make -C tests/host test
+cargo test --manifest-path bridge/Cargo.toml
 west twister -T tests/zephyr -p native_sim
 ```
 
 The ESP Unity test app is at `firmware/esp32c5/test_apps/protocol`; build it
 with IDF and run it on an ESP32-C5 test target. Its menu contains the `[smol]`
-tests. SlimeVR Server's core tests
-contain the matching UDP codec, discovery, CRC, reorder, source timeout,
-registration, and cross-source RF dedup coverage.
+tests. The Bridge Rust tests contain the matching UDP codec, discovery, CRC,
+reorder, source timeout, registration, cross-source RF deduplication, and
+SlimeVR UDP output coverage.

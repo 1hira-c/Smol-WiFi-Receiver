@@ -3,14 +3,18 @@
 
 #include <string.h>
 #include "esp_err.h"
+#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "nvs.h"
 #include "nvs_flash.h"
 
 #define CONFIG_NAMESPACE "smol-gateway"
+#define CONFIG_SCHEMA_VERSION 1u
+#define LEGACY_DYNAMIC_SERVER_PORT 6969u
 
 static struct app_config current;
 static portMUX_TYPE config_lock = portMUX_INITIALIZER_UNLOCKED;
+static const char *TAG = "config";
 
 static void defaults(void)
 {
@@ -47,9 +51,27 @@ int app_config_init(void)
 	read_string(handle, "country", current.country, sizeof(current.country));
 	read_string(handle, "server", current.server, sizeof(current.server));
 	(void)nvs_get_u16(handle, "server_port", &current.server_port);
+	uint8_t schema_version = 0;
+	(void)nvs_get_u8(handle, "schema_version", &schema_version);
 	nvs_close(handle);
 	if (strlen(current.country) != 2) memcpy(current.country, "JP", 3);
 	if (current.server_port == 0) current.server_port = APP_DEFAULT_SERVER_PORT;
+	if (schema_version < CONFIG_SCHEMA_VERSION) {
+		bool migrate_dynamic_port = current.server[0] == '\0' &&
+			current.server_port == LEGACY_DYNAMIC_SERVER_PORT;
+		if (migrate_dynamic_port) current.server_port = APP_DEFAULT_SERVER_PORT;
+		error = nvs_open(CONFIG_NAMESPACE, NVS_READWRITE, &handle);
+		if (error != ESP_OK) return error;
+		if (migrate_dynamic_port) error = nvs_set_u16(handle, "server_port", current.server_port);
+		if (error == ESP_OK) error = nvs_set_u8(handle, "schema_version", CONFIG_SCHEMA_VERSION);
+		if (error == ESP_OK) error = nvs_commit(handle);
+		nvs_close(handle);
+		if (error != ESP_OK) return error;
+		if (migrate_dynamic_port) {
+			ESP_LOGI(TAG, "Migrated dynamic Bridge port from %u to %u",
+				LEGACY_DYNAMIC_SERVER_PORT, APP_DEFAULT_SERVER_PORT);
+		}
+	}
 	return ESP_OK;
 }
 
@@ -74,7 +96,8 @@ int app_config_save(const struct app_config *config)
 		(error = nvs_set_str(handle, "password", config->password)) == ESP_OK &&
 		(error = nvs_set_str(handle, "country", config->country)) == ESP_OK &&
 		(error = nvs_set_str(handle, "server", config->server)) == ESP_OK &&
-		(error = nvs_set_u16(handle, "server_port", config->server_port)) == ESP_OK) {
+		(error = nvs_set_u16(handle, "server_port", config->server_port)) == ESP_OK &&
+		(error = nvs_set_u8(handle, "schema_version", CONFIG_SCHEMA_VERSION)) == ESP_OK) {
 		error = nvs_commit(handle);
 	}
 	nvs_close(handle);

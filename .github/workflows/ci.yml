@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  bridge:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo fmt --manifest-path bridge/Cargo.toml --check
+      - run: cargo test --manifest-path bridge/Cargo.toml
+
   host-protocol:
     runs-on: ubuntu-latest
     steps:
@@ -14,13 +24,14 @@ jobs:
       - name: Whitespace and SPDX headers
         run: |
           git diff --check
-          if grep -RInE '[[:blank:]]+$' README.md LICENSE LICENSE-MIT docs firmware protocol tests; then
+          if grep -RInE '[[:blank:]]+$' README.md README.ja.md LICENSE LICENSE-MIT bridge/src bridge/Cargo.toml bridge/README.md bridge/windows-firewall.ps1 docs firmware protocol tests; then
             exit 1
           fi
           python3 -m json.tool protocol/golden_vectors.json >/dev/null
-          missing=$(find .github firmware protocol tests -type f \( -name '*.c' -o -name '*.h' -o -name 'CMakeLists.txt' -o -name 'Kconfig' -o -name '*.conf' -o -name '*.overlay' -o -name '*.yml' -o -name '*.yaml' -o -name 'Makefile' \) -print0 | xargs -0 grep -L 'SPDX-License-Identifier')
+          missing=$(find .github bridge/src firmware protocol tests -type f \( -name '*.c' -o -name '*.h' -o -name '*.rs' -o -name 'CMakeLists.txt' -o -name 'Kconfig' -o -name '*.conf' -o -name '*.overlay' -o -name '*.yml' -o -name '*.yaml' -o -name 'Makefile' \) -print0 | xargs -0 grep -L 'SPDX-License-Identifier')
           grep -q 'SPDX-License-Identifier' ncs-build.sh || missing="${missing}${missing:+$'\n'}ncs-build.sh"
           grep -q 'SPDX-License-Identifier' esp-flash.ps1 || missing="${missing}${missing:+$'\n'}esp-flash.ps1"
+          grep -q 'SPDX-License-Identifier' bridge/windows-firewall.ps1 || missing="${missing}${missing:+$'\n'}bridge/windows-firewall.ps1"
           test -z "$missing" || { echo "$missing"; exit 1; }
 
   nrf54l15:

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define APP_DEFAULT_SERVER_PORT 6969u
+#define APP_DEFAULT_SERVER_PORT 6970u
 
 struct app_config {
 	bool configured;
